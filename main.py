@@ -21,22 +21,31 @@ def help_command(update: Update, context: CallbackContext) -> None:
 def button_handler(update: Update, context: CallbackContext) -> None:
     button_text = update.message.text
     # You can customize these button texts based on your use case
-    if button_text == 'Button 1':
+    if button_text == 'New case':
         response = openai.Completion.create(
             engine="text-davinci-003",
-            prompt="Your prompt here.",
+            prompt="Please, provide a case of a human rights violation.",
             max_tokens=100
         )
         update.message.reply_text(response['choices'][0]['text'])
-    elif button_text == 'Button 2':
-        # Handle Button 2
-        pass
-    elif button_text == 'Button 3':
-        # Handle Button 3
-        pass
-    elif button_text == 'Button 4':
-        # Handle Button 4
-        pass
+    elif button_text == 'Legal commentary':
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt="Please, provide a legal commentary on a previous case of a human rights violation.",
+            max_tokens=100
+        )
+    elif button_text == 'Context':
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt="Please, provide a historical context of a previous case of a human rights violation.",
+            max_tokens=100
+        )
+    elif button_text == 'Similar case':
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt="Please, find a similar case of a previous case of a human rights violation.",
+            max_tokens=100
+        )
 
 # Define the message handler for natural language requests
 def message_handler(update: Update, context: CallbackContext) -> None:
